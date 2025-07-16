@@ -1,0 +1,15 @@
+{
+  "filename": "ui-website-1.json",
+  "annotations": [
+    {
+      "id": "1752679768145",
+      "x": 135.29411764705884,
+      "y": 455.514705882353,
+      "width": 151.76470588235293,
+      "height": 55.29411764705878,
+      "tag": "button"
+    }
+  ],
+  "imageWidth": 1200,
+  "imageHeight": 900
+}
