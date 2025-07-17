@@ -7,6 +7,15 @@ from datetime import datetime
 from typing import Optional
 from PIL import Image
 import io
+import google.generativeai as genai
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Configure Gemini API
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+genai.configure(api_key=GOOGLE_API_KEY)
 
 app = FastAPI()
 
@@ -19,34 +28,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configuration
-MAX_IMAGE_WIDTH = 1024  # Maximum width for resized images
-MAX_IMAGE_HEIGHT = 768  # Maximum height for resized images
-
 # Create directories if they don't exist
 UPLOAD_DIR = "uploads"
 ANNOTATIONS_DIR = "annotations"
+PREDICTIONS_DIR = "predictions"  # New directory for predictions
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs(ANNOTATIONS_DIR, exist_ok=True)
-
-def resize_image(image: Image.Image) -> Image.Image:
-    """Resize image while maintaining aspect ratio"""
-    width, height = image.size
-    
-    # Calculate aspect ratio
-    aspect_ratio = width / height
-    
-    if width > MAX_IMAGE_WIDTH or height > MAX_IMAGE_HEIGHT:
-        if aspect_ratio > 1:  # Width is larger
-            new_width = min(width, MAX_IMAGE_WIDTH)
-            new_height = int(new_width / aspect_ratio)
-        else:  # Height is larger
-            new_height = min(height, MAX_IMAGE_HEIGHT)
-            new_width = int(new_height * aspect_ratio)
-            
-        image = image.resize((new_width, new_height), Image.Resampling.LANCZOS)
-    
-    return image
+os.makedirs(PREDICTIONS_DIR, exist_ok=True)  # Create predictions directory
 
 @app.post("/upload")
 async def upload_image(file: UploadFile = File(...)):
@@ -55,18 +43,15 @@ async def upload_image(file: UploadFile = File(...)):
         content = await file.read()
         image = Image.open(io.BytesIO(content))
         
-        # Resize image
-        resized_image = resize_image(image)
-        
-        # Save with original filename
+        # Save with original filename and dimensions
         filename = file.filename
         filepath = os.path.join(UPLOAD_DIR, filename)
         
-        # Save the resized image
-        resized_image.save(filepath, format=image.format)
+        # Save the original image
+        image.save(filepath, format=image.format)
         
-        # Return image dimensions along with filename
-        width, height = resized_image.size
+        # Return original image dimensions
+        width, height = image.size
         return {
             "filename": filename,
             "width": width,
@@ -82,23 +67,170 @@ async def upload_image(file: UploadFile = File(...)):
 @app.post("/save-annotations")
 async def save_annotations(data: dict):
     try:
-        filename = data.get('filename', None)
-        if not filename:
+        # Get the original image filename from the request
+        image_filename = data.get('filename')
+        if not image_filename:
             # Fallback to timestamp if no filename provided
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"annotations_{timestamp}.json"
+        else:
+            # Remove .json extension if it exists and add it back
+            base_name = os.path.splitext(image_filename)[0]
+            filename = f"{base_name}.json"
             
         filepath = os.path.join(ANNOTATIONS_DIR, filename)
         
+        # Ensure we store the original image filename in the JSON content
+        data_to_save = {
+            **data,  # Keep all other data
+            "filename": image_filename  # Override filename with original image name
+        }
+        
         # Save annotations
         with open(filepath, "w") as f:
-            json.dump(data, f, indent=2)
+            json.dump(data_to_save, f, indent=2)
         
         return {"filename": filename, "status": "success"}
     except Exception as e:
         return JSONResponse(
             status_code=500,
             content={"message": f"Failed to save annotations: {str(e)}"}
+        )
+
+@app.post("/predict")
+async def predict_ui_elements(file: UploadFile = File(...)):
+    try:
+        # Check if API key is configured
+        if not GOOGLE_API_KEY:
+            return JSONResponse(
+                status_code=500,
+                content={"message": "Google API key not configured. Please add your API key to the .env file."}
+            )
+
+        # Read image file
+        content = await file.read()
+        image = Image.open(io.BytesIO(content))
+        width, height = image.size
+        
+        try:
+            # Create Gemini model
+            model = genai.GenerativeModel('gemini-2.5-flash')
+            
+            # Prepare prompt for UI element detection
+            prompt = """
+            Analyze this UI screenshot and detect the following elements:
+            - Button
+            - Input
+            - Radio
+            - Drop (Dropdown)
+
+            Return your response in this exact JSON format:
+            [
+              {
+                "type": "Button",
+                "box_2d": [y_min, x_min, y_max, x_max]
+              }
+            ]
+
+            Important:
+            1. The box_2d coordinates should be normalized to 0-1000 scale
+            2. Only include elements you are very confident about
+            3. Return ONLY the JSON array, no other text
+            4. The type must be exactly one of: Button, Input, Radio, Drop
+            5. Coordinates must be integers between 0 and 1000
+            """
+            
+            print("Sending request to Gemini API...")
+            response = model.generate_content(
+                contents=[prompt, image],  # Use original image
+                generation_config=genai.types.GenerationConfig(
+                    temperature=0.1
+                )
+            )
+            print("Received response from Gemini API")
+            print("Raw response:", response.text)
+            
+            # Check if response has text
+            if not response.text:
+                return JSONResponse(
+                    status_code=500,
+                    content={"message": "No response from Gemini API. Please try again."}
+                )
+            
+            # Parse the response and convert coordinates to actual pixels
+            try:
+                # Clean the response text - remove any markdown formatting if present
+                clean_text = response.text
+                if "```json" in clean_text:
+                    clean_text = clean_text.split("```json")[1].split("```")[0]
+                elif "```" in clean_text:
+                    clean_text = clean_text.split("```")[1]
+                
+                print("Cleaned response text:", clean_text)
+                predictions = json.loads(clean_text)
+                annotations = []
+                
+                for pred in predictions:
+                    # Convert normalized coordinates to actual pixels
+                    box = pred["box_2d"]
+                    annotation = {
+                        "type": pred["type"],
+                        "coordinates": {
+                            "x": int(box[1] * width / 1000),
+                            "y": int(box[0] * height / 1000),
+                            "width": int((box[3] - box[1]) * width / 1000),
+                            "height": int((box[2] - box[0]) * height / 1000)
+                        }
+                    }
+                    annotations.append(annotation)
+                
+                # Save predictions with timestamp
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                # Get the input image name without extension
+                base_image_name = os.path.splitext(file.filename)[0]
+                filename = f"predictions_{base_image_name}.json"
+                filepath = os.path.join(PREDICTIONS_DIR, filename)
+                
+                with open(filepath, "w") as f:
+                    json.dump({
+                        "filename": file.filename,
+                        "predictions": annotations,
+                        "timestamp": timestamp,
+                        "imageSize": {
+                            "width": width,
+                            "height": height
+                        }
+                    }, f, indent=2)
+                
+                return {
+                    "filename": filename,
+                    "predictions": annotations,
+                    "status": "success",
+                    "imageSize": {
+                        "width": width,
+                        "height": height
+                    }
+                }
+                
+            except json.JSONDecodeError:
+                print("Raw API response:", response.text)  # Log the raw response
+                return JSONResponse(
+                    status_code=500,
+                    content={"message": "Failed to parse API response as JSON. The model might not have returned valid JSON."}
+                )
+                
+        except Exception as api_error:
+            print("Gemini API error:", str(api_error))  # Log API-specific error
+            return JSONResponse(
+                status_code=500,
+                content={"message": f"Gemini API error: {str(api_error)}. Please check your API key and billing status."}
+            )
+            
+    except Exception as e:
+        print("General error:", str(e))  # Log general error
+        return JSONResponse(
+            status_code=500,
+            content={"message": f"Failed to predict UI elements: {str(e)}"}
         )
 
 if __name__ == "__main__":

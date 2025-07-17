@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Stage, Layer, Image, Rect, Transformer, Text } from 'react-konva';
 import axios from 'axios';
-import React from 'react'; // Added missing import for React.Fragment
+import * as React from 'react';
 
 interface Annotation {
   id: string;
@@ -19,6 +19,21 @@ interface UploadResponse {
 
 interface SaveResponse {
   filename: string;
+  status: string;
+}
+
+interface PredictResponse {
+  filename: string;
+  predictions: Array<{
+    type: string;
+    text: string;
+    coordinates: {
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+    }
+  }>;
   status: string;
 }
 
@@ -191,8 +206,12 @@ const ImageAnnotator = () => {
     }
 
     try {
+      // Get the file input element to get the original filename
+      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+      const originalFileName = fileInput?.files?.[0]?.name || `${imageFileName}.png`;
+
       const response = await axios.post<SaveResponse>('http://localhost:8000/save-annotations', {
-        filename: `${imageFileName}.json`,
+        filename: originalFileName,  // Send the original image filename
         annotations: annotations.filter(ann => !ann.id.startsWith('temp-')),
         imageWidth: image?.width,
         imageHeight: image?.height,
@@ -211,6 +230,51 @@ const ImageAnnotator = () => {
     setAnnotations(prev => prev.filter(ann => ann.id !== idToDelete));
     if (selectedId === idToDelete) {
       setSelectedId(null);
+    }
+  };
+
+  const handlePredict = async () => {
+    if (!image || !imageFileName) {
+      alert('Please upload an image first');
+      return;
+    }
+
+    try {
+      // Get the file input element
+      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+      if (!fileInput?.files?.[0]) {
+        alert('Please upload an image first');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+
+      const response = await axios.post<PredictResponse>('http://localhost:8000/predict', formData);
+      
+      if (response.data.status === 'success') {
+        // Convert predictions to annotations format
+        const newAnnotations: Annotation[] = response.data.predictions.map((pred: PredictResponse['predictions'][0]) => ({
+          id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+          x: pred.coordinates.x,
+          y: pred.coordinates.y,
+          width: pred.coordinates.width,
+          height: pred.coordinates.height,
+          tag: pred.type.toLowerCase()
+        }));
+
+        // Add new predictions to existing annotations
+        setAnnotations(prev => [...prev, ...newAnnotations]);
+        alert('UI elements detected successfully!');
+      }
+    } catch (error: any) {
+      console.error('Error predicting UI elements:', error);
+      
+      // Extract the error message from the response if available
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to detect UI elements';
+      
+      // Show a more detailed error message
+      alert(`Error: ${errorMessage}\n\nPlease make sure:\n1. Your Google API key is configured correctly\n2. You have enabled billing in Google Cloud\n3. You have sufficient credits/quota`);
     }
   };
 
@@ -243,6 +307,7 @@ const ImageAnnotator = () => {
           accept="image/*"
           onChange={handleImageUpload}
         />
+        <button onClick={handlePredict}>Predict</button>
         <button onClick={handleSave}>Save Annotations</button>
       </div>
       
