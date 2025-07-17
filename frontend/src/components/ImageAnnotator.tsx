@@ -27,7 +27,7 @@ const tagColors: { [key: string]: string } = {
   input: '#44FF44',
   radio: '#4444FF',
   dropdown: '#FF44FF',
-  '': '#FF0000',
+  '': '#FFA500', // Changed from '#FF0000' to '#FFA500' (orange)
 };
 
 const ImageAnnotator = () => {
@@ -96,6 +96,15 @@ const ImageAnnotator = () => {
   const handleMouseDown = (e: any) => {
     if (!image) return;
 
+    // Get the clicked target and its name/type
+    const clickedOnEmpty = e.target === e.target.getStage();
+    const clickedOnTransformer = e.target.getParent()?.className === 'Transformer';
+    
+    // If we clicked on transformer or we're trying to select/drag a box, don't create new box
+    if (clickedOnTransformer || (!clickedOnEmpty && e.target.className === 'Rect')) {
+      return;
+    }
+
     // Clear selection when starting to draw
     setSelectedId(null);
     
@@ -122,6 +131,7 @@ const ImageAnnotator = () => {
   };
 
   const handleMouseMove = (e: any) => {
+    // Only handle mouse move if we're drawing
     if (!isDrawing || !tempAnnotationId) return;
 
     const stage = e.target.getStage();
@@ -141,18 +151,27 @@ const ImageAnnotator = () => {
     ));
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (e: any) => {
     if (!isDrawing || !tempAnnotationId) return;
 
     setIsDrawing(false);
     
-    // Convert temporary annotation to permanent one
-    const permanentId = Date.now().toString();
-    setAnnotations(prev => prev.map(ann => 
-      ann.id === tempAnnotationId
-        ? { ...ann, id: permanentId }
-        : ann
-    ));
+    // Get the current temporary annotation
+    const tempAnnotation = annotations.find(ann => ann.id === tempAnnotationId);
+    
+    // Only keep the annotation if it has a minimum size (e.g., 5x5 pixels)
+    if (tempAnnotation && (Math.abs(tempAnnotation.width) > 5 || Math.abs(tempAnnotation.height) > 5)) {
+      // Convert temporary annotation to permanent one
+      const permanentId = Date.now().toString();
+      setAnnotations(prev => prev.map(ann => 
+        ann.id === tempAnnotationId
+          ? { ...ann, id: permanentId }
+          : ann
+      ));
+    } else {
+      // Remove the temporary annotation if it's too small
+      setAnnotations(prev => prev.filter(ann => ann.id !== tempAnnotationId));
+    }
     
     setTempAnnotationId(null);
   };
@@ -255,8 +274,23 @@ const ImageAnnotator = () => {
                       width={annotation.width}
                       height={annotation.height}
                       stroke={annotation.id === tempAnnotationId ? "blue" : tagColors[annotation.tag]}
-                      strokeWidth={2}
+                      strokeWidth={annotation.id === selectedId ? 3 : 2}
+                      dash={annotation.id === selectedId ? [5, 5] : undefined}
                       onClick={() => setSelectedId(annotation.id)}
+                      onTap={() => setSelectedId(annotation.id)}
+                      draggable={annotation.id === selectedId}
+                      onDragEnd={(e) => {
+                        // Update annotation position after drag
+                        setAnnotations(prev => prev.map(ann =>
+                          ann.id === annotation.id
+                            ? {
+                                ...ann,
+                                x: e.target.x(),
+                                y: e.target.y()
+                              }
+                            : ann
+                        ));
+                      }}
                     />
                     {annotation.tag && (
                       <Text
@@ -272,8 +306,42 @@ const ImageAnnotator = () => {
                 {selectedId && (
                   <Transformer
                     ref={transformerRef}
+                    rotateEnabled={false}
+                    keepRatio={false}
+                    enabledAnchors={['top-left', 'top-right', 'bottom-left', 'bottom-right']}
                     boundBoxFunc={(oldBox, newBox) => {
+                      // Ensure minimum size of 5x5
+                      const minSize = 5;
+                      const isToSmall = newBox.width < minSize || newBox.height < minSize;
+                      if (isToSmall) {
+                        return oldBox;
+                      }
                       return newBox;
+                    }}
+                    onTransformEnd={(e) => {
+                      // Get the node that was transformed
+                      const node = e.target;
+                      
+                      // Get the new position and size
+                      const scaleX = node.scaleX();
+                      const scaleY = node.scaleY();
+                      
+                      // Reset scale to 1 to avoid accumulating scale
+                      node.scaleX(1);
+                      node.scaleY(1);
+                      
+                      // Update the annotation with new dimensions
+                      setAnnotations(prev => prev.map(ann => 
+                        ann.id === selectedId
+                          ? {
+                              ...ann,
+                              x: node.x(),
+                              y: node.y(),
+                              width: node.width() * scaleX,
+                              height: node.height() * scaleY,
+                            }
+                          : ann
+                      ));
                     }}
                   />
                 )}
