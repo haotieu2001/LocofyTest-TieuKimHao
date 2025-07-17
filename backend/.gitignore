@@ -16,7 +16,6 @@ ENV/
 *.swo
 
 # Uploads and local data
-uploads/
 *.db
 *.sqlite3
 

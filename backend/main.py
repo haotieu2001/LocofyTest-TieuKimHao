@@ -122,7 +122,7 @@ async def predict_ui_elements(file: UploadFile = File(...)):
             - Button
             - Input
             - Radio
-            - Drop (Dropdown)
+            - Drop
 
             Return your response in this exact JSON format:
             [
