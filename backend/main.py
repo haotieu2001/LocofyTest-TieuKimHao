@@ -109,8 +109,34 @@ async def predict_ui_elements(file: UploadFile = File(...)):
 
         # Read image file
         content = await file.read()
-        image = Image.open(io.BytesIO(content))
-        width, height = image.size
+        original_image = Image.open(io.BytesIO(content))
+        
+        # Convert RGBA to RGB if needed
+        if original_image.mode == 'RGBA':
+            # Create a white background image
+            background = Image.new('RGB', original_image.size, (255, 255, 255))
+            # Paste the image using alpha channel as mask
+            background.paste(original_image, mask=original_image.split()[3])
+            original_image = background
+        elif original_image.mode != 'RGB':
+            original_image = original_image.convert('RGB')
+            
+        original_width, original_height = original_image.size
+        
+        # Calculate resize dimensions while maintaining aspect ratio
+        MAX_SIZE = 1000
+        if original_width > MAX_SIZE or original_height > MAX_SIZE:
+            # Calculate scaling factor
+            scale = MAX_SIZE / max(original_width, original_height)
+            new_width = int(original_width * scale)
+            new_height = int(original_height * scale)
+            # Resize image
+            image = original_image.resize((new_width, new_height), Image.Resampling.LANCZOS)
+            print(f"Resized image from {original_width}x{original_height} to {new_width}x{new_height}")
+        else:
+            image = original_image
+            new_width, new_height = original_width, original_height
+            print(f"Using original image size: {new_width}x{new_height}")
         
         try:
             # Create Gemini model
@@ -118,31 +144,31 @@ async def predict_ui_elements(file: UploadFile = File(...)):
             
             # Prepare prompt for UI element detection
             prompt = """
-            Analyze this UI screenshot and detect the following elements:
-            - Button
-            - Input
-            - Radio
-            - Drop
+            Detect UI elements in this screenshot and return their bounding boxes in a 1000x1000 coordinate space where (0,0) is top-left.
 
-            Return your response in this exact JSON format:
+            Elements to detect:
+            - buttons: clickable elements with background
+            - input fields: text entry areas with borders
+            - radio buttons: entire group of radio options including labels as one unit
+            - dropdowns: selection fields with arrows
+
+            Include the complete element with its background, borders, and directly attached labels.
+
+            Return coordinates as [x1, y1, x2, y2] integers in a JSON array:
             [
               {
-                "type": "Button",
-                "box_2d": [y_min, x_min, y_max, x_max]
+                "type": "button|input|radio|dropdown",
+                "box_2d": [x1, y1, x2, y2],
+                "confidence": 0.0-1.0
               }
             ]
 
-            Important:
-            1. The box_2d coordinates should be normalized to 0-1000 scale
-            2. Only include elements you are very confident about
-            3. Return ONLY the JSON array, no other text
-            4. The type must be exactly one of: Button, Input, Radio, Drop
-            5. Coordinates must be integers between 0 and 1000
+            Only return high-confidence detections.
             """
             
             print("Sending request to Gemini API...")
             response = model.generate_content(
-                contents=[prompt, image],  # Use original image
+                contents=[prompt, image],
                 generation_config=genai.types.GenerationConfig(
                     temperature=0.1
                 )
@@ -173,13 +199,43 @@ async def predict_ui_elements(file: UploadFile = File(...)):
                 for pred in predictions:
                     # Convert normalized coordinates to actual pixels
                     box = pred["box_2d"]
+                    
+                    # Validate coordinates
+                    if not all(isinstance(coord, (int, float)) and 0 <= coord <= 1000 for coord in box):
+                        print(f"Invalid coordinates detected: {box}")
+                        continue
+                    
+                    # Map "Drop" to "Dropdown" if needed
+                    element_type = "Dropdown" if pred["type"] == "Drop" else pred["type"]
+                    
+                    # First convert from 1000x1000 space to resized image space
+                    x_min_resized = (box[0] * new_width) / 1000
+                    y_min_resized = (box[1] * new_height) / 1000
+                    x_max_resized = (box[2] * new_width) / 1000
+                    y_max_resized = (box[3] * new_height) / 1000
+                    
+                    # Then scale from resized space to original image space
+                    scale_x = original_width / new_width
+                    scale_y = original_height / new_height
+                    
+                    x_min = int(max(0, min(x_min_resized * scale_x, original_width)))
+                    y_min = int(max(0, min(y_min_resized * scale_y, original_height)))
+                    x_max = int(max(0, min(x_max_resized * scale_x, original_width)))
+                    y_max = int(max(0, min(y_max_resized * scale_y, original_height)))
+                    
+                    # Additional validation
+                    if x_min >= x_max or y_min >= y_max:
+                        print(f"Invalid box dimensions: x_min={x_min}, x_max={x_max}, y_min={y_min}, y_max={y_max}")
+                        continue
+                
+                    
                     annotation = {
-                        "type": pred["type"],
+                        "type": element_type,
                         "coordinates": {
-                            "x": int(box[1] * width / 1000),
-                            "y": int(box[0] * height / 1000),
-                            "width": int((box[3] - box[1]) * width / 1000),
-                            "height": int((box[2] - box[0]) * height / 1000)
+                            "x": x_min,
+                            "y": y_min,
+                            "width": x_max - x_min,
+                            "height": y_max - y_min
                         }
                     }
                     annotations.append(annotation)
@@ -197,8 +253,8 @@ async def predict_ui_elements(file: UploadFile = File(...)):
                         "predictions": annotations,
                         "timestamp": timestamp,
                         "imageSize": {
-                            "width": width,
-                            "height": height
+                            "width": original_width,
+                            "height": original_height
                         }
                     }, f, indent=2)
                 
@@ -207,8 +263,8 @@ async def predict_ui_elements(file: UploadFile = File(...)):
                     "predictions": annotations,
                     "status": "success",
                     "imageSize": {
-                        "width": width,
-                        "height": height
+                        "width": original_width,
+                        "height": original_height
                     }
                 }
                 

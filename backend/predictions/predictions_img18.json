@@ -1,0 +1,109 @@
+{
+  "filename": "img18.png",
+  "predictions": [
+    {
+      "type": "dropdown",
+      "coordinates": {
+        "x": 132,
+        "y": 26,
+        "width": 119,
+        "height": 37
+      }
+    },
+    {
+      "type": "input",
+      "coordinates": {
+        "x": 270,
+        "y": 26,
+        "width": 330,
+        "height": 37
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1200,
+        "y": 26,
+        "width": 149,
+        "height": 37
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1365,
+        "y": 26,
+        "width": 90,
+        "height": 37
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1470,
+        "y": 19,
+        "width": 179,
+        "height": 50
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1860,
+        "y": 104,
+        "width": 29,
+        "height": 26
+      }
+    },
+    {
+      "type": "input",
+      "coordinates": {
+        "x": 255,
+        "y": 783,
+        "width": 420,
+        "height": 53
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 689,
+        "y": 783,
+        "width": 136,
+        "height": 53
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1200,
+        "y": 888,
+        "width": 149,
+        "height": 26
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1365,
+        "y": 882,
+        "width": 209,
+        "height": 39
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1589,
+        "y": 882,
+        "width": 196,
+        "height": 39
+      }
+    }
+  ],
+  "timestamp": "20250717_232855",
+  "imageSize": {
+    "width": 1920,
+    "height": 941
+  }
+}

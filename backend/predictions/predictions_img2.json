@@ -1,0 +1,73 @@
+{
+  "filename": "img2.png",
+  "predictions": [
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 208,
+        "y": 231,
+        "width": 278,
+        "height": 190
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 639,
+        "y": 231,
+        "width": 541,
+        "height": 94
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 639,
+        "y": 339,
+        "width": 541,
+        "height": 95
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 208,
+        "y": 678,
+        "width": 417,
+        "height": 137
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 639,
+        "y": 678,
+        "width": 417,
+        "height": 137
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 208,
+        "y": 922,
+        "width": 278,
+        "height": 137
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 499,
+        "y": 922,
+        "width": 279,
+        "height": 137
+      }
+    }
+  ],
+  "timestamp": "20250717_232925",
+  "imageSize": {
+    "width": 1500,
+    "height": 1100
+  }
+}

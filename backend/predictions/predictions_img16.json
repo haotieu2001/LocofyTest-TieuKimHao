@@ -1,0 +1,37 @@
+{
+  "filename": "img16.png",
+  "predictions": [
+    {
+      "type": "input",
+      "coordinates": {
+        "x": 299,
+        "y": 21,
+        "width": 351,
+        "height": 35
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 700,
+        "y": 400,
+        "width": 150,
+        "height": 35
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 860,
+        "y": 400,
+        "width": 159,
+        "height": 35
+      }
+    }
+  ],
+  "timestamp": "20250717_232809",
+  "imageSize": {
+    "width": 1920,
+    "height": 941
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "filename": "img19.png",
+  "predictions": [
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1593,
+        "y": 42,
+        "width": 163,
+        "height": 28
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1776,
+        "y": 42,
+        "width": 105,
+        "height": 28
+      }
+    },
+    {
+      "type": "dropdown",
+      "coordinates": {
+        "x": 211,
+        "y": 127,
+        "width": 115,
+        "height": 28
+      }
+    },
+    {
+      "type": "dropdown",
+      "coordinates": {
+        "x": 364,
+        "y": 127,
+        "width": 192,
+        "height": 28
+      }
+    }
+  ],
+  "timestamp": "20250717_232907",
+  "imageSize": {
+    "width": 1920,
+    "height": 941
+  }
+}

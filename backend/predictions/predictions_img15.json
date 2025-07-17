@@ -1,0 +1,64 @@
+{
+  "filename": "img15.png",
+  "predictions": [
+    {
+      "type": "input",
+      "coordinates": {
+        "x": 297,
+        "y": 674,
+        "width": 303,
+        "height": 84
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 612,
+        "y": 705,
+        "width": 213,
+        "height": 53
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 837,
+        "y": 705,
+        "width": 243,
+        "height": 53
+      }
+    },
+    {
+      "type": "input",
+      "coordinates": {
+        "x": 1109,
+        "y": 97,
+        "width": 211,
+        "height": 27
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1334,
+        "y": 97,
+        "width": 90,
+        "height": 27
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1432,
+        "y": 97,
+        "width": 75,
+        "height": 27
+      }
+    }
+  ],
+  "timestamp": "20250717_232755",
+  "imageSize": {
+    "width": 1920,
+    "height": 941
+  }
+}

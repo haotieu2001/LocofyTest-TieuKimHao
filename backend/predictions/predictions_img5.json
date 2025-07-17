@@ -1,0 +1,91 @@
+{
+  "filename": "img5.png",
+  "predictions": [
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 69,
+        "y": 69,
+        "width": 107,
+        "height": 107
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 512,
+        "y": 204,
+        "width": 204,
+        "height": 37
+      }
+    },
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 81,
+        "y": 303,
+        "width": 635,
+        "height": 270
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 847,
+        "y": 69,
+        "width": 107,
+        "height": 107
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1536,
+        "y": 204,
+        "width": 204,
+        "height": 37
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 815,
+        "y": 303,
+        "width": 213,
+        "height": 213
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1060,
+        "y": 303,
+        "width": 213,
+        "height": 213
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1306,
+        "y": 303,
+        "width": 213,
+        "height": 213
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1552,
+        "y": 303,
+        "width": 213,
+        "height": 213
+      }
+    }
+  ],
+  "timestamp": "20250717_233052",
+  "imageSize": {
+    "width": 2048,
+    "height": 1024
+  }
+}

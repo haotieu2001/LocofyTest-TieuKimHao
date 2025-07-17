@@ -1,6 +1,13 @@
 # Locofy Test Project
 
-A full-stack web application with a React/TypeScript frontend and Python backend.
+A full-stack web application for object detection and evaluation, featuring a React/TypeScript frontend and Python backend.
+
+## Project Overview
+
+This project provides a complete solution for:
+- Labeling UI components in images
+- Predicting UI components in images using LLM API
+- Evaluating model predictions against ground truth annotations
 
 ## Project Structure
 
@@ -13,7 +20,18 @@ A full-stack web application with a React/TypeScript frontend and Python backend
 │   ├── main.py       # Main server file
 │   ├── uploads/      # Upload directory
 │   └── annotations/  # Annotations directory
+│   └── predictions/  # Predictions directory
+├── evaluate_model.py  # Model evaluation script
+├── process_datasets.py # Dataset processing script
+└── Datasets/         # Directory for input images
 ```
+
+## Key Features
+
+- **Image Processing**: Supports multiple image formats (JPG, JPEG, PNG)
+- **Object Detection**: API endpoint for processing images and returning predictions
+- **Evaluation Metrics**: Calculates precision, recall, and F1-score for each object type
+- **Interactive UI**: Modern web interface for uploading images and viewing results
 
 ## Prerequisites
 
@@ -79,19 +97,71 @@ Before you begin, ensure you have the following installed:
    ```
    The frontend will be available at `http://localhost:5173`
 
-## Development
+## Using the Scripts
 
-- Frontend code is written in TypeScript and uses Vite as the build tool
-- Backend uses Python with Flask framework
-- The application supports file uploads and annotations
+### Dataset Processing (process_datasets.py)
 
-## Contributing
+This script processes a directory of images through the object detection API:
+```bash
+python process_datasets.py
+```
+- Process all images in the `Datasets` directory through the object detection API and save the predictions to the predictions directory
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+### Model Evaluation (evaluate_model.py)
+
+This script evaluates model predictions against ground truth annotations:
+```bash
+python evaluate_model.py
+```
+- Compares prediction JSON files with ground truth annotations JSON files 
+- Calculates IoU (Intersection over Union) for matching
+- Generates detailed metrics per object type
+
+## Sample Evaluation Results
+
+Example output from evaluating the model on a test dataset:
+
+```
+=== Final Evaluation Results ===
+Total files processed: 20
+
+Metrics for DROPDOWN:
+  Total ground truth boxes: 34
+  Total predictions: 35
+  True positives (Number of correctly predicted boxes): 1
+  Precision: 0.029
+  Recall: 0.029
+  F1-score: 0.029
+
+Metrics for BUTTON:
+  Total ground truth boxes: 48
+  Total predictions: 122
+  True positives (Number of correctly predicted boxes): 5
+  Precision: 0.041
+  Recall: 0.104
+  F1-score: 0.059
+
+Metrics for RADIO:
+  Total ground truth boxes: 14
+  Total predictions: 19
+  True positives (Number of correctly predicted boxes): 1
+  Precision: 0.053
+  Recall: 0.071
+  F1-score: 0.061
+
+Metrics for INPUT:
+  Total ground truth boxes: 10
+  Total predictions: 20
+  True positives (Number of correctly predicted boxes): 1
+  Precision: 0.050
+  Recall: 0.100
+  F1-score: 0.067
+```
+
+These results indicate areas where the model could be improved:
+- High number of false positives (especially for BUTTON components)
+- Low true positive rate across all component types
+- Room for improvement in both precision and recall metrics
 
 ## License
 

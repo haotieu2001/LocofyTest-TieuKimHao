@@ -1,0 +1,154 @@
+{
+  "filename": "img4.jpg",
+  "predictions": [
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 164,
+        "y": 195,
+        "width": 828,
+        "height": 216
+      }
+    },
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 1035,
+        "y": 195,
+        "width": 832,
+        "height": 216
+      }
+    },
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 164,
+        "y": 450,
+        "width": 828,
+        "height": 215
+      }
+    },
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 1035,
+        "y": 450,
+        "width": 832,
+        "height": 215
+      }
+    },
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 164,
+        "y": 848,
+        "width": 1344,
+        "height": 131
+      }
+    },
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 164,
+        "y": 1005,
+        "width": 1344,
+        "height": 130
+      }
+    },
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 164,
+        "y": 1161,
+        "width": 1344,
+        "height": 131
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 164,
+        "y": 1436,
+        "width": 573,
+        "height": 196
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 770,
+        "y": 1436,
+        "width": 574,
+        "height": 196
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 1377,
+        "y": 1436,
+        "width": 577,
+        "height": 196
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 2014,
+        "y": 195,
+        "width": 573,
+        "height": 359
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 2621,
+        "y": 195,
+        "width": 573,
+        "height": 359
+      }
+    },
+    {
+      "type": "button",
+      "coordinates": {
+        "x": 3227,
+        "y": 195,
+        "width": 125,
+        "height": 359
+      }
+    },
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 2014,
+        "y": 783,
+        "width": 1006,
+        "height": 130
+      }
+    },
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 2014,
+        "y": 946,
+        "width": 1006,
+        "height": 131
+      }
+    },
+    {
+      "type": "radio",
+      "coordinates": {
+        "x": 2014,
+        "y": 1109,
+        "width": 1006,
+        "height": 131
+      }
+    }
+  ],
+  "timestamp": "20250717_233040",
+  "imageSize": {
+    "width": 3352,
+    "height": 1632
+  }
+}
