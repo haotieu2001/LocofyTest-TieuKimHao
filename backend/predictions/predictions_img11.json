@@ -2,88 +2,169 @@
   "filename": "img11.png",
   "predictions": [
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 1344,
-        "y": 18,
-        "width": 151,
-        "height": 19
+        "x": 1290,
+        "y": 28,
+        "width": 238,
+        "height": 28
       }
     },
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 1511,
-        "y": 18,
-        "width": 153,
-        "height": 19
+        "x": 1549,
+        "y": 28,
+        "width": 207,
+        "height": 28
       }
     },
     {
-      "type": "dropdown",
+      "type": "Dropdown",
       "coordinates": {
-        "x": 919,
-        "y": 18,
-        "width": 64,
-        "height": 19
+        "x": 1113,
+        "y": 28,
+        "width": 77,
+        "height": 28
       }
     },
     {
-      "type": "dropdown",
+      "type": "Dropdown",
       "coordinates": {
-        "x": 944,
-        "y": 74,
-        "width": 144,
-        "height": 16
-      }
-    },
-    {
-      "type": "dropdown",
-      "coordinates": {
-        "x": 1104,
-        "y": 74,
-        "width": 144,
-        "height": 16
-      }
-    },
-    {
-      "type": "dropdown",
-      "coordinates": {
-        "x": 1263,
-        "y": 74,
-        "width": 88,
-        "height": 16
-      }
-    },
-    {
-      "type": "dropdown",
-      "coordinates": {
-        "x": 1367,
-        "y": 74,
-        "width": 144,
-        "height": 16
-      }
-    },
-    {
-      "type": "button",
-      "coordinates": {
-        "x": 255,
-        "y": 557,
-        "width": 177,
+        "x": 1000,
+        "y": 91,
+        "width": 113,
         "height": 23
       }
     },
     {
-      "type": "button",
+      "type": "Dropdown",
       "coordinates": {
-        "x": 1023,
-        "y": 298,
-        "width": 161,
-        "height": 78
+        "x": 1134,
+        "y": 91,
+        "width": 146,
+        "height": 23
+      }
+    },
+    {
+      "type": "Dropdown",
+      "coordinates": {
+        "x": 1303,
+        "y": 91,
+        "width": 146,
+        "height": 23
+      }
+    },
+    {
+      "type": "Dropdown",
+      "coordinates": {
+        "x": 1472,
+        "y": 91,
+        "width": 90,
+        "height": 23
+      }
+    },
+    {
+      "type": "Dropdown",
+      "coordinates": {
+        "x": 1585,
+        "y": 91,
+        "width": 143,
+        "height": 23
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 336,
+        "y": 666,
+        "width": 145,
+        "height": 37
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 516,
+        "y": 666,
+        "width": 121,
+        "height": 37
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 336,
+        "y": 733,
+        "width": 220,
+        "height": 23
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 992,
+        "y": 245,
+        "width": 83,
+        "height": 14
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 992,
+        "y": 266,
+        "width": 175,
+        "height": 15
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 1524,
+        "y": 245,
+        "width": 71,
+        "height": 14
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 1607,
+        "y": 245,
+        "width": 55,
+        "height": 14
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 1674,
+        "y": 245,
+        "width": 48,
+        "height": 14
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 1733,
+        "y": 245,
+        "width": 52,
+        "height": 14
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 1797,
+        "y": 245,
+        "width": 57,
+        "height": 14
       }
     }
   ],
-  "timestamp": "20250717_232630",
+  "timestamp": "20250718_162803",
   "imageSize": {
     "width": 1920,
     "height": 941

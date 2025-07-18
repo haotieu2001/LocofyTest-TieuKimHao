@@ -2,43 +2,52 @@
   "filename": "img12.png",
   "predictions": [
     {
-      "type": "dropdown",
+      "type": "Dropdown",
       "coordinates": {
-        "x": 42,
-        "y": 29,
-        "width": 180,
-        "height": 38
+        "x": 122,
+        "y": 38,
+        "width": 202,
+        "height": 19
       }
     },
     {
-      "type": "input",
+      "type": "Input",
       "coordinates": {
-        "x": 1307,
-        "y": 26,
-        "width": 234,
-        "height": 41
+        "x": 1395,
+        "y": 31,
+        "width": 283,
+        "height": 32
       }
     },
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 1649,
-        "y": 26,
-        "width": 132,
-        "height": 41
+        "x": 1722,
+        "y": 38,
+        "width": 78,
+        "height": 19
       }
     },
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 840,
-        "y": 554,
-        "width": 240,
-        "height": 52
+        "x": 1822,
+        "y": 31,
+        "width": 67,
+        "height": 32
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 902,
+        "y": 506,
+        "width": 119,
+        "height": 53
       }
     }
   ],
-  "timestamp": "20250717_232646",
+  "timestamp": "20250718_162813",
   "imageSize": {
     "width": 1920,
     "height": 941

@@ -2,34 +2,106 @@
   "filename": "img10.png",
   "predictions": [
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 1584,
-        "y": 118,
-        "width": 255,
-        "height": 41
+        "x": 1370,
+        "y": 84,
+        "width": 33,
+        "height": 25
       }
     },
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 608,
-        "y": 578,
-        "width": 192,
-        "height": 56
+        "x": 1438,
+        "y": 79,
+        "width": 155,
+        "height": 32
       }
     },
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 823,
-        "y": 578,
-        "width": 248,
-        "height": 56
+        "x": 731,
+        "y": 387,
+        "width": 219,
+        "height": 46
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 965,
+        "y": 387,
+        "width": 219,
+        "height": 46
+      }
+    },
+    {
+      "type": "Input",
+      "coordinates": {
+        "x": 783,
+        "y": 489,
+        "width": 98,
+        "height": 16
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 322,
+        "y": 561,
+        "width": 37,
+        "height": 18
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 322,
+        "y": 587,
+        "width": 37,
+        "height": 18
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 322,
+        "y": 611,
+        "width": 37,
+        "height": 18
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 322,
+        "y": 637,
+        "width": 37,
+        "height": 17
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 322,
+        "y": 661,
+        "width": 37,
+        "height": 18
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 322,
+        "y": 686,
+        "width": 37,
+        "height": 18
       }
     }
   ],
-  "timestamp": "20250717_232601",
+  "timestamp": "20250718_162748",
   "imageSize": {
     "width": 1920,
     "height": 941

@@ -8,6 +8,7 @@ from typing import Optional
 from PIL import Image
 import io
 import google.generativeai as genai
+from google.generativeai import types
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -122,55 +123,22 @@ async def predict_ui_elements(file: UploadFile = File(...)):
             original_image = original_image.convert('RGB')
             
         original_width, original_height = original_image.size
-        
-        # Calculate resize dimensions while maintaining aspect ratio
-        MAX_SIZE = 1000
-        if original_width > MAX_SIZE or original_height > MAX_SIZE:
-            # Calculate scaling factor
-            scale = MAX_SIZE / max(original_width, original_height)
-            new_width = int(original_width * scale)
-            new_height = int(original_height * scale)
-            # Resize image
-            image = original_image.resize((new_width, new_height), Image.Resampling.LANCZOS)
-            print(f"Resized image from {original_width}x{original_height} to {new_width}x{new_height}")
-        else:
-            image = original_image
-            new_width, new_height = original_width, original_height
-            print(f"Using original image size: {new_width}x{new_height}")
-        
+            
         try:
             # Create Gemini model
             model = genai.GenerativeModel('gemini-2.5-flash')
             
             # Prepare prompt for UI element detection
             prompt = """
-            Detect UI elements in this screenshot and return their bounding boxes in a 1000x1000 coordinate space where (0,0) is top-left.
-
-            Elements to detect:
-            - buttons: clickable elements with background
-            - input fields: text entry areas with borders
-            - radio buttons: entire group of radio options including labels as one unit
-            - dropdowns: selection fields with arrows
-
-            Include the complete element with its background, borders, and directly attached labels.
-
-            Return coordinates as [x1, y1, x2, y2] integers in a JSON array:
-            [
-              {
-                "type": "button|input|radio|dropdown",
-                "box_2d": [x1, y1, x2, y2],
-                "confidence": 0.0-1.0
-              }
-            ]
-
-            Only return high-confidence detections.
+            Detect the 2d bounding boxes of 4 kinds of UI elements: Button, Input, Dropdown, Radio in UI screenshot, with no more than 20 items. Output a json list where each entry contains the 2D bounding box in "box_2d" and a text label in "label".
             """
             
             print("Sending request to Gemini API...")
             response = model.generate_content(
-                contents=[prompt, image],
+                contents=[prompt, original_image],
                 generation_config=genai.types.GenerationConfig(
-                    temperature=0.1
+                    temperature=0.5,
+                    candidate_count=1
                 )
             )
             print("Received response from Gemini API")
@@ -198,36 +166,21 @@ async def predict_ui_elements(file: UploadFile = File(...)):
                 
                 for pred in predictions:
                     # Convert normalized coordinates to actual pixels
-                    box = pred["box_2d"]
-                    
-                    # Validate coordinates
-                    if not all(isinstance(coord, (int, float)) and 0 <= coord <= 1000 for coord in box):
-                        print(f"Invalid coordinates detected: {box}")
-                        continue
+                    box = pred["box_2d"]              
                     
                     # Map "Drop" to "Dropdown" if needed
-                    element_type = "Dropdown" if pred["type"] == "Drop" else pred["type"]
+                    element_type = "Dropdown" if pred["label"] == "Drop" else pred["label"]
                     
-                    # First convert from 1000x1000 space to resized image space
-                    x_min_resized = (box[0] * new_width) / 1000
-                    y_min_resized = (box[1] * new_height) / 1000
-                    x_max_resized = (box[2] * new_width) / 1000
-                    y_max_resized = (box[3] * new_height) / 1000
-                    
-                    # Then scale from resized space to original image space
-                    scale_x = original_width / new_width
-                    scale_y = original_height / new_height
-                    
-                    x_min = int(max(0, min(x_min_resized * scale_x, original_width)))
-                    y_min = int(max(0, min(y_min_resized * scale_y, original_height)))
-                    x_max = int(max(0, min(x_max_resized * scale_x, original_width)))
-                    y_max = int(max(0, min(y_max_resized * scale_y, original_height)))
+                    # Convert from 1000x1000 space to actual image dimensions
+                    y_min = int(max(0, min((box[0] * original_height) / 1000, original_height)))
+                    x_min = int(max(0, min((box[1] * original_width) / 1000, original_width)))
+                    y_max = int(max(0, min((box[2] * original_height) / 1000, original_height)))
+                    x_max = int(max(0, min((box[3] * original_width) / 1000, original_width)))
                     
                     # Additional validation
                     if x_min >= x_max or y_min >= y_max:
                         print(f"Invalid box dimensions: x_min={x_min}, x_max={x_max}, y_min={y_min}, y_max={y_max}")
                         continue
-                
                     
                     annotation = {
                         "type": element_type,

@@ -9,6 +9,9 @@ This project provides a complete solution for:
 - Predicting UI components in images using LLM API
 - Evaluating model predictions against ground truth annotations
 
+![Example_UI](Example_UI.png)
+
+
 ## Project Structure
 
 ```
@@ -125,37 +128,38 @@ Example output from evaluating the model on a test dataset:
 === Final Evaluation Results ===
 Total files processed: 20
 
+
 Metrics for DROPDOWN:
   Total ground truth boxes: 34
-  Total predictions: 35
-  True positives (Number of correctly predicted boxes): 1
-  Precision: 0.029
-  Recall: 0.029
-  F1-score: 0.029
+  Total predictions: 46
+  True positives (Number of correctly predicted boxes): 9
+  Precision: 0.196
+  Recall: 0.265
+  F1-score: 0.225
 
 Metrics for BUTTON:
-  Total ground truth boxes: 48
-  Total predictions: 122
-  True positives (Number of correctly predicted boxes): 5
-  Precision: 0.041
-  Recall: 0.104
-  F1-score: 0.059
+  Total ground truth boxes: 127
+  Total predictions: 144
+  True positives (Number of correctly predicted boxes): 28
+  Precision: 0.194
+  Recall: 0.220
+  F1-score: 0.207
 
 Metrics for RADIO:
-  Total ground truth boxes: 14
-  Total predictions: 19
-  True positives (Number of correctly predicted boxes): 1
-  Precision: 0.053
-  Recall: 0.071
-  F1-score: 0.061
+  Total ground truth boxes: 51
+  Total predictions: 51
+  True positives (Number of correctly predicted boxes): 2
+  Precision: 0.039
+  Recall: 0.039
+  F1-score: 0.039
 
 Metrics for INPUT:
   Total ground truth boxes: 10
-  Total predictions: 20
-  True positives (Number of correctly predicted boxes): 1
-  Precision: 0.050
-  Recall: 0.100
-  F1-score: 0.067
+  Total predictions: 22
+  True positives (Number of correctly predicted boxes): 3
+  Precision: 0.136
+  Recall: 0.300
+  F1-score: 0.187
 ```
 
 These results indicate areas where the model could be improved:

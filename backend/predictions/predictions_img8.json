@@ -2,61 +2,142 @@
   "filename": "img8.png",
   "predictions": [
     {
-      "type": "input",
+      "type": "Input",
       "coordinates": {
-        "x": 869,
-        "y": 31,
-        "width": 181,
-        "height": 42
+        "x": 1127,
+        "y": 21,
+        "width": 364,
+        "height": 34
       }
     },
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 1152,
-        "y": 31,
-        "width": 101,
-        "height": 42
+        "x": 1539,
+        "y": 21,
+        "width": 135,
+        "height": 34
       }
     },
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 270,
-        "y": 601,
-        "width": 225,
-        "height": 47
+        "x": 1699,
+        "y": 21,
+        "width": 153,
+        "height": 34
       }
     },
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 510,
-        "y": 601,
-        "width": 225,
-        "height": 47
+        "x": 353,
+        "y": 428,
+        "width": 380,
+        "height": 45
       }
     },
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 270,
-        "y": 836,
+        "x": 748,
+        "y": 428,
+        "width": 327,
+        "height": 45
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 353,
+        "y": 829,
+        "width": 203,
+        "height": 34
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 1689,
+        "y": 903,
         "width": 150,
-        "height": 47
+        "height": 22
       }
     },
     {
-      "type": "button",
+      "type": "Button",
       "coordinates": {
-        "x": 1770,
-        "y": 901,
-        "width": 119,
-        "height": 26
+        "x": 1854,
+        "y": 903,
+        "width": 66,
+        "height": 22
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 499,
+        "y": 26,
+        "width": 188,
+        "height": 22
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 710,
+        "y": 26,
+        "width": 134,
+        "height": 22
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 867,
+        "y": 26,
+        "width": 108,
+        "height": 22
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 998,
+        "y": 26,
+        "width": 77,
+        "height": 22
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 1098,
+        "y": 26,
+        "width": 169,
+        "height": 22
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 1290,
+        "y": 26,
+        "width": 130,
+        "height": 22
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 1420,
+        "y": 26,
+        "width": 39,
+        "height": 22
       }
     }
   ],
-  "timestamp": "20250717_233215",
+  "timestamp": "20250718_153724",
   "imageSize": {
     "width": 1920,
     "height": 941
