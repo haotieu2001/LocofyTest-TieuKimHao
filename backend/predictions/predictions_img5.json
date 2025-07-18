@@ -4,95 +4,95 @@
     {
       "type": "Button",
       "coordinates": {
-        "x": 98,
-        "y": 143,
-        "width": 129,
-        "height": 64
+        "x": 90,
+        "y": 45,
+        "width": 127,
+        "height": 63
       }
     },
     {
       "type": "Button",
       "coordinates": {
-        "x": 811,
-        "y": 143,
-        "width": 131,
-        "height": 64
+        "x": 847,
+        "y": 45,
+        "width": 127,
+        "height": 63
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 118,
-        "y": 378,
-        "width": 62,
-        "height": 31
+        "x": 98,
+        "y": 285,
+        "width": 393,
+        "height": 22
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 118,
-        "y": 413,
-        "width": 62,
-        "height": 31
+        "x": 98,
+        "y": 325,
+        "width": 393,
+        "height": 23
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 118,
-        "y": 448,
-        "width": 62,
-        "height": 31
+        "x": 98,
+        "y": 366,
+        "width": 393,
+        "height": 23
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 118,
-        "y": 483,
-        "width": 62,
-        "height": 31
+        "x": 98,
+        "y": 407,
+        "width": 393,
+        "height": 23
       }
     },
     {
-      "type": "Radio",
+      "type": "Button",
       "coordinates": {
-        "x": 892,
-        "y": 378,
+        "x": 876,
+        "y": 358,
         "width": 295,
-        "height": 187
+        "height": 174
       }
     },
     {
-      "type": "Radio",
+      "type": "Button",
       "coordinates": {
-        "x": 1228,
-        "y": 378,
-        "width": 297,
-        "height": 187
-      }
-    },
-    {
-      "type": "Radio",
-      "coordinates": {
-        "x": 1564,
-        "y": 378,
+        "x": 1204,
+        "y": 358,
         "width": 295,
-        "height": 187
+        "height": 174
       }
     },
     {
-      "type": "Radio",
+      "type": "Button",
       "coordinates": {
-        "x": 1900,
-        "y": 378,
-        "width": 148,
-        "height": 187
+        "x": 1531,
+        "y": 358,
+        "width": 295,
+        "height": 174
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 1859,
+        "y": 358,
+        "width": 189,
+        "height": 174
       }
     }
   ],
-  "timestamp": "20250718_163046",
+  "timestamp": "20250718_164628",
   "imageSize": {
     "width": 2048,
     "height": 1024

@@ -131,35 +131,35 @@ Total files processed: 20
 
 Metrics for DROPDOWN:
   Total ground truth boxes: 34
-  Total predictions: 46
-  True positives (Number of correctly predicted boxes): 9
-  Precision: 0.196
-  Recall: 0.265
-  F1-score: 0.225
+  Total predictions: 47
+  True positives (Number of correctly predicted boxes): 16
+  Precision: 0.340
+  Recall: 0.471
+  F1-score: 0.395
 
 Metrics for BUTTON:
   Total ground truth boxes: 127
-  Total predictions: 144
-  True positives (Number of correctly predicted boxes): 28
-  Precision: 0.194
-  Recall: 0.220
-  F1-score: 0.207
+  Total predictions: 148
+  True positives (Number of correctly predicted boxes): 36
+  Precision: 0.243
+  Recall: 0.283
+  F1-score: 0.262
 
 Metrics for RADIO:
   Total ground truth boxes: 51
-  Total predictions: 51
-  True positives (Number of correctly predicted boxes): 2
-  Precision: 0.039
-  Recall: 0.039
-  F1-score: 0.039
+  Total predictions: 41
+  True positives (Number of correctly predicted boxes): 5
+  Precision: 0.122
+  Recall: 0.098
+  F1-score: 0.109
 
 Metrics for INPUT:
   Total ground truth boxes: 10
-  Total predictions: 22
-  True positives (Number of correctly predicted boxes): 3
-  Precision: 0.136
-  Recall: 0.300
-  F1-score: 0.187
+  Total predictions: 25
+  True positives (Number of correctly predicted boxes): 5
+  Precision: 0.200
+  Recall: 0.500
+  F1-score: 0.286
 ```
 
 These results indicate areas where the model could be improved:

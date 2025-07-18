@@ -4,86 +4,86 @@
     {
       "type": "Radio",
       "coordinates": {
-        "x": 276,
-        "y": 177,
-        "width": 76,
-        "height": 44
+        "x": 279,
+        "y": 223,
+        "width": 81,
+        "height": 16
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 276,
-        "y": 213,
-        "width": 108,
-        "height": 44
+        "x": 279,
+        "y": 251,
+        "width": 105,
+        "height": 17
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 276,
-        "y": 249,
-        "width": 90,
-        "height": 19
+        "x": 279,
+        "y": 280,
+        "width": 153,
+        "height": 17
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 1179,
-        "y": 217,
-        "width": 25,
-        "height": 19
+        "x": 724,
+        "y": 184,
+        "width": 488,
+        "height": 91
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 1179,
-        "y": 323,
-        "width": 25,
-        "height": 19
+        "x": 724,
+        "y": 287,
+        "width": 488,
+        "height": 90
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 601,
-        "y": 629,
-        "width": 26,
-        "height": 18
+        "x": 273,
+        "y": 583,
+        "width": 474,
+        "height": 90
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 1120,
-        "y": 629,
-        "width": 26,
-        "height": 18
+        "x": 769,
+        "y": 583,
+        "width": 474,
+        "height": 90
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 481,
-        "y": 849,
-        "width": 26,
-        "height": 18
+        "x": 273,
+        "y": 766,
+        "width": 474,
+        "height": 92
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 715,
-        "y": 849,
-        "width": 26,
-        "height": 18
+        "x": 769,
+        "y": 766,
+        "width": 474,
+        "height": 92
       }
     }
   ],
-  "timestamp": "20250718_162945",
+  "timestamp": "20250718_164537",
   "imageSize": {
     "width": 1500,
     "height": 1100

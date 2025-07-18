@@ -4,104 +4,149 @@
     {
       "type": "Radio",
       "coordinates": {
-        "x": 569,
-        "y": 164,
-        "width": 47,
-        "height": 23
+        "x": 301,
+        "y": 140,
+        "width": 81,
+        "height": 39
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 797,
-        "y": 164,
-        "width": 47,
-        "height": 23
+        "x": 576,
+        "y": 140,
+        "width": 80,
+        "height": 39
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 569,
-        "y": 745,
-        "width": 47,
-        "height": 23
+        "x": 301,
+        "y": 691,
+        "width": 81,
+        "height": 40
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 797,
-        "y": 745,
-        "width": 47,
-        "height": 23
+        "x": 576,
+        "y": 691,
+        "width": 80,
+        "height": 40
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 1267,
-        "y": 164,
-        "width": 46,
-        "height": 23
+        "x": 1146,
+        "y": 140,
+        "width": 80,
+        "height": 39
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 1494,
-        "y": 164,
-        "width": 47,
-        "height": 23
+        "x": 1421,
+        "y": 140,
+        "width": 80,
+        "height": 39
       }
     },
     {
       "type": "Radio",
       "coordinates": {
-        "x": 1722,
-        "y": 164,
-        "width": 47,
-        "height": 23
+        "x": 1696,
+        "y": 140,
+        "width": 80,
+        "height": 39
+      }
+    },
+    {
+      "type": "Radio",
+      "coordinates": {
+        "x": 1146,
+        "y": 926,
+        "width": 80,
+        "height": 40
+      }
+    },
+    {
+      "type": "Radio",
+      "coordinates": {
+        "x": 1421,
+        "y": 926,
+        "width": 80,
+        "height": 40
+      }
+    },
+    {
+      "type": "Radio",
+      "coordinates": {
+        "x": 1696,
+        "y": 926,
+        "width": 80,
+        "height": 40
       }
     },
     {
       "type": "Dropdown",
       "coordinates": {
-        "x": 335,
-        "y": 962,
-        "width": 124,
-        "height": 180
+        "x": 288,
+        "y": 926,
+        "width": 107,
+        "height": 226
       }
     },
     {
-      "type": "Radio",
+      "type": "Dropdown",
       "coordinates": {
-        "x": 1957,
-        "y": 995,
-        "width": 47,
-        "height": 23
+        "x": 288,
+        "y": 1171,
+        "width": 107,
+        "height": 225
       }
     },
     {
-      "type": "Radio",
+      "type": "Dropdown",
       "coordinates": {
-        "x": 2185,
-        "y": 995,
-        "width": 47,
-        "height": 23
+        "x": 288,
+        "y": 1416,
+        "width": 107,
+        "height": 216
       }
     },
     {
-      "type": "Radio",
+      "type": "Button",
       "coordinates": {
-        "x": 2413,
-        "y": 995,
-        "width": 47,
-        "height": 23
+        "x": 2151,
+        "y": 78,
+        "width": 838,
+        "height": 277
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 2151,
+        "y": 372,
+        "width": 838,
+        "height": 277
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 2151,
+        "y": 665,
+        "width": 838,
+        "height": 278
       }
     }
   ],
-  "timestamp": "20250718_163033",
+  "timestamp": "20250718_164613",
   "imageSize": {
     "width": 3352,
     "height": 1632

@@ -172,10 +172,10 @@ async def predict_ui_elements(file: UploadFile = File(...)):
                     element_type = "Dropdown" if pred["label"] == "Drop" else pred["label"]
                     
                     # Convert from 1000x1000 space to actual image dimensions
-                    y_min = int(max(0, min((box[0] * original_height) / 1000, original_height)))
-                    x_min = int(max(0, min((box[1] * original_width) / 1000, original_width)))
-                    y_max = int(max(0, min((box[2] * original_height) / 1000, original_height)))
-                    x_max = int(max(0, min((box[3] * original_width) / 1000, original_width)))
+                    x_min = int(max(0, min((box[0] * original_height) / 1000, original_height)))
+                    y_min = int(max(0, min((box[1] * original_width) / 1000, original_width)))
+                    x_max = int(max(0, min((box[2] * original_height) / 1000, original_height)))
+                    y_max = int(max(0, min((box[3] * original_width) / 1000, original_width)))
                     
                     # Additional validation
                     if x_min >= x_max or y_min >= y_max:

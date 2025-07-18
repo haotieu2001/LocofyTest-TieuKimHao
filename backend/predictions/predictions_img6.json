@@ -4,185 +4,167 @@
     {
       "type": "Input",
       "coordinates": {
-        "x": 385,
-        "y": 26,
-        "width": 335,
-        "height": 21
+        "x": 55,
+        "y": 177,
+        "width": 58,
+        "height": 175
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 341,
+        "y": 127,
+        "width": 48,
+        "height": 250
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 55,
+        "y": 743,
+        "width": 58,
+        "height": 54
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 55,
+        "y": 806,
+        "width": 58,
+        "height": 43
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 268,
+        "y": 469,
+        "width": 50,
+        "height": 38
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 268,
+        "y": 508,
+        "width": 50,
+        "height": 54
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 268,
+        "y": 563,
+        "width": 50,
+        "height": 54
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 268,
+        "y": 618,
+        "width": 50,
+        "height": 54
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 268,
+        "y": 673,
+        "width": 50,
+        "height": 46
+      }
+    },
+    {
+      "type": "Button",
+      "coordinates": {
+        "x": 268,
+        "y": 720,
+        "width": 50,
+        "height": 36
+      }
+    },
+    {
+      "type": "Dropdown",
+      "coordinates": {
+        "x": 55,
+        "y": 424,
+        "width": 58,
+        "height": 54
+      }
+    },
+    {
+      "type": "Dropdown",
+      "coordinates": {
+        "x": 55,
+        "y": 488,
+        "width": 58,
+        "height": 65
+      }
+    },
+    {
+      "type": "Dropdown",
+      "coordinates": {
+        "x": 55,
+        "y": 563,
+        "width": 58,
+        "height": 53
+      }
+    },
+    {
+      "type": "Dropdown",
+      "coordinates": {
+        "x": 55,
+        "y": 626,
+        "width": 58,
+        "height": 39
+      }
+    },
+    {
+      "type": "Dropdown",
+      "coordinates": {
+        "x": 55,
+        "y": 675,
+        "width": 58,
+        "height": 40
+      }
+    },
+    {
+      "type": "Dropdown",
+      "coordinates": {
+        "x": 55,
+        "y": 725,
+        "width": 58,
+        "height": 68
+      }
+    },
+    {
+      "type": "Dropdown",
+      "coordinates": {
+        "x": 55,
+        "y": 803,
+        "width": 58,
+        "height": 51
       }
     },
     {
       "type": "Input",
       "coordinates": {
-        "x": 915,
-        "y": 127,
-        "width": 361,
-        "height": 23
-      }
-    },
-    {
-      "type": "Input",
-      "coordinates": {
-        "x": 1411,
-        "y": 127,
-        "width": 251,
-        "height": 23
-      }
-    },
-    {
-      "type": "Button",
-      "coordinates": {
-        "x": 241,
-        "y": 168,
-        "width": 546,
-        "height": 24
-      }
-    },
-    {
-      "type": "Button",
-      "coordinates": {
-        "x": 1534,
-        "y": 28,
-        "width": 84,
-        "height": 19
-      }
-    },
-    {
-      "type": "Button",
-      "coordinates": {
-        "x": 1632,
-        "y": 22,
-        "width": 92,
-        "height": 30
-      }
-    },
-    {
-      "type": "Button",
-      "coordinates": {
-        "x": 946,
-        "y": 102,
-        "width": 67,
-        "height": 19
-      }
-    },
-    {
-      "type": "Button",
-      "coordinates": {
-        "x": 1031,
-        "y": 102,
-        "width": 88,
-        "height": 19
-      }
-    },
-    {
-      "type": "Button",
-      "coordinates": {
-        "x": 1136,
-        "y": 102,
-        "width": 81,
-        "height": 19
-      }
-    },
-    {
-      "type": "Button",
-      "coordinates": {
-        "x": 1232,
-        "y": 102,
-        "width": 92,
-        "height": 19
-      }
-    },
-    {
-      "type": "Button",
-      "coordinates": {
-        "x": 1342,
-        "y": 102,
-        "width": 82,
-        "height": 19
-      }
-    },
-    {
-      "type": "Button",
-      "coordinates": {
-        "x": 915,
-        "y": 219,
-        "width": 139,
-        "height": 20
-      }
-    },
-    {
-      "type": "Button",
-      "coordinates": {
-        "x": 1082,
-        "y": 219,
-        "width": 142,
-        "height": 20
-      }
-    },
-    {
-      "type": "Button",
-      "coordinates": {
-        "x": 915,
-        "y": 289,
-        "width": 150,
-        "height": 21
-      }
-    },
-    {
-      "type": "Dropdown",
-      "coordinates": {
-        "x": 881,
-        "y": 28,
-        "width": 84,
-        "height": 19
-      }
-    },
-    {
-      "type": "Dropdown",
-      "coordinates": {
-        "x": 992,
-        "y": 28,
-        "width": 96,
-        "height": 19
-      }
-    },
-    {
-      "type": "Dropdown",
-      "coordinates": {
-        "x": 1115,
-        "y": 28,
-        "width": 77,
-        "height": 19
-      }
-    },
-    {
-      "type": "Dropdown",
-      "coordinates": {
-        "x": 1272,
-        "y": 28,
-        "width": 64,
-        "height": 19
-      }
-    },
-    {
-      "type": "Dropdown",
-      "coordinates": {
-        "x": 1361,
-        "y": 28,
-        "width": 102,
-        "height": 19
-      }
-    },
-    {
-      "type": "Dropdown",
-      "coordinates": {
-        "x": 1488,
-        "y": 28,
-        "width": 78,
-        "height": 19
+        "x": 341,
+        "y": 654,
+        "width": 48,
+        "height": 184
       }
     }
   ],
-  "timestamp": "20250718_163101",
+  "timestamp": "20250718_164648",
   "imageSize": {
     "width": 1920,
     "height": 941
